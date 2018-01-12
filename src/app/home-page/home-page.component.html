@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row">
+    <div class="jumbotron">
+      <h1>Witaj!</h1>
+      <p>Witaj na stronie głównej Systemu Eletronicznej Rezerwacji Kajaków!</p>
+      <p>W tym miejscu możesz dowiedzieć się jak korzystać z Systemu.</p>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="panel panel-default">
+      <div class="panel-body">
+          <div class="col-md-12 thumbnail">
+              <app-orders-manual [admin]="admin"></app-orders-manual>
+          </div>
+
+          <div class="col-md-12 thumbnail">
+              <app-reports-manual  [admin]="admin"></app-reports-manual>
+
+          </div>
+
+          <div class="col-md-12 thumbnail">
+               <app-kayaks-manual  [admin]="admin"></app-kayaks-manual>
+
+          </div>
+
+          <div class="col-md-12 thumbnail">
+              <app-routes-manual  [admin]="admin"></app-routes-manual>
+
+          </div>
+          <div class="col-md-12 thumbnail">
+              <app-users-manual  [admin]="admin"></app-users-manual>
+
+          </div>
+
+      </div>
+  </div>
+</div>

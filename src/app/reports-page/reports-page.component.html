@@ -1,0 +1,48 @@
+<div class="container">
+    <div class="jumbotron">
+        <h1>Raporty</h1>
+        <p *ngIf="isAdmin()">W tym miejscu możesz zobaczyć raporty przygotoane do lepszego zarządzania i podejmowania decyzji</p>
+        <p *ngIf="!isAdmin()">W tym miejscu możesz raporty ze swoich podróży!</p>
+    </div>
+</div>
+
+    
+    
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-body" *ngIf="isAdmin()">
+            <div class="col-md-6 text-center">
+               <h3>Bardzo ważny raport</h3>
+                <app-very-important-report></app-very-important-report>
+            </div>
+
+            <div class="col-md-6 text-center">
+                <h3>Ilość nowych użytkowników</h3>
+                <app-new-users-chart [users]="users"></app-new-users-chart>
+            </div>
+
+            <div class="col-md-12 text-center">
+                <h3>Przychody</h3>
+                <app-earned-money-chart [orders]="orders"></app-earned-money-chart>
+            </div>
+
+            <div class="col-md-6 text-center">
+                <h3>Najczesciej wypozyczane kajaki</h3>
+                <app-kayaks-chart [orders]="orders" [kayaks]="kayaks"></app-kayaks-chart>
+            </div>
+            <div class="col-md-6 text-center">
+                <h3>Ilosc zreazlizowanych zamówień</h3>
+                <app-orders-chart [orders]="orders"></app-orders-chart>
+            </div>
+
+        </div>
+        <div class="panel-body" *ngIf="!isAdmin()">
+            <div class="col-md-12 text-center">
+                <h2>Statystyki z podróży</h2>
+                <app-user-stats [orders]="orders" [routes]="routes"></app-user-stats>
+            </div>
+        </div>
+    </div>
+</div>
+
+

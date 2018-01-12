@@ -1,0 +1,63 @@
+
+<div class="overlay">
+	<div class="popup">
+    <h2>{{header}}</h2>
+    <div *ngIf="showSpinner" class="overlay">
+        <app-loading-spinner></app-loading-spinner>
+    </div>
+		<a class="close" (click)="closeModal()">&times;</a>
+		<div class="content">
+      <form class="form-signin" [formGroup]="kayakForm" (ngSubmit)="editKayak($event, kayakForm.value)">
+
+
+        <div [ngClass]="{'has-error':!kayakForm.controls['name'].valid && kayakForm.controls['name'].touched}">
+          <label for="name" class="sr-only">Nazwa*</label>
+          <input #name type="text" id="name" class="form-control" placeholder="Nazwa"
+          [formControl]="kayakForm.controls['name']" [(ngModel)]="kayak.name">
+          <div class="alert alert-danger" *ngIf="!kayakForm.controls['name'].valid && kayakForm.controls['name'].touched">Nazwa jest wymagana</div>
+        </div>
+
+        <div [ngClass]="{'has-error':!kayakForm.controls['capacity'].valid && kayakForm.controls['capacity'].touched}">
+          <label for="capacity" class="sr-only">Ładowność(w osobach)*</label>
+          <input #capacity type="number" id="capacity" class="form-control" placeholder="2/3"
+          [formControl]="kayakForm.controls['capacity']" [(ngModel)]="kayak.capacity">
+          <div class="alert alert-danger" *ngIf="!kayakForm.controls['capacity'].valid && kayakForm.controls['capacity'].touched">Pole "Ładowność" jest wymagane</div>
+        </div>
+
+        <div [ngClass]="{'has-error':!kayakForm.controls['amount'].valid && kayakForm.controls['amount'].touched}">
+          <label for="amount" class="sr-only">Ilość sztuk na bazie*</label>
+          <input #amount type="number" id="amount" class="form-control" placeholder= "3h"
+          [formControl]="kayakForm.controls['amount']" [(ngModel)]="kayak.amount">
+          <div class="alert alert-danger" *ngIf="!kayakForm.controls['amount'].valid && kayakForm.controls['amount'].touched">Ilośc sztuk na bazie jest wymagana</div>
+        </div>
+
+        <div [ngClass]="{'has-error':!kayakForm.controls['description'].valid && kayakForm.controls['description'].touched}">
+          <label for="description" class="sr-only">Opis*</label>
+          <textarea rows="4" class="form-control" id="description"  placeholder="Opis"
+          [formControl]="kayakForm.controls['description']" [(ngModel)]="kayak.description"></textarea>
+          <div class="alert alert-danger" *ngIf="kayakForm.controls['description'].hasError('minlength')">Opis musi zawierać co najmniej 10 znaków</div>
+          <div class="alert alert-danger" *ngIf="kayakForm.controls['description'].hasError('required') && kayakForm.controls['description'].touched">Opis jest wymagany</div>
+        </div>
+
+        <div [ngClass]="{'has-error':!kayakForm.controls['price'].valid && kayakForm.controls['price'].touched}">
+          <label for="price" class="sr-only">Cena*</label>
+          <input #price type="number" id="price" class="form-control" placeholder="Cena"
+          [formControl]="kayakForm.controls['price']" [(ngModel)]="kayak.price">
+          <div class="alert alert-danger" *ngIf="!kayakForm.controls['price'].valid && kayakForm.controls['price'].touched">Cena jest wymagana</div>
+        </div>
+
+          <label class="sr-only">Zdjęcie kajaka</label>
+          <label class="btn btn-default form-control" >
+              Wybierz plik <input type="file" style="display: none;" (change)="upload($event)">
+          </label>
+
+        <p>* - Pole wymagane</p>
+        <div class="text-center">
+          <button class="btn btn-primary btn-inlinr" (click)="closeModal()">Zamknj</button>
+          <button  [disabled]="!kayakForm.valid && kayak.photo!=null" class="btn btn-success btn-inline" type="submit" (click)="onSave()">Zapisz</button>
+        </div>
+
+      </form>
+		</div>
+	</div>
+</div>

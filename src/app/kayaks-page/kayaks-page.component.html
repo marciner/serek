@@ -1,0 +1,40 @@
+<app-kayaks-modal *ngIf="selected" (onClose)="onClose($event)" (save)="save($event)"  [kayak]="kayak" [header]="header"></app-kayaks-modal>
+<app-info-modal *ngIf="success" (onSuccess)="onSuccess($event)"></app-info-modal>
+<app-error-modal *ngIf="error" (onError)="onError($event)"></app-error-modal>
+
+<div class="container">
+  <div class="jumbotron">
+    <h1>Kajaki</h1>
+    <p *ngIf="isAdmin()">W tym miejscu możesz zarzązdać swoja kajakową Flotą. Dodawaj, usuwaj, modyfikuj opisy i ceny kajaków</p>
+    <p *ngIf="!isAdmin()">W tym miejscu znajdują się informacje odnośnie oferowanych przez nas kajaków. Mozesz dowiedzieć się miedzy innymi:
+    jakie kajaki posiadamy obecnie w ofercie i w jakiej ilości, jaka jest cena wypożyczenia poszczególnego kajaka, jego ładowność oraz opis by móc dopasować Kajak do swych potrzeb!</p>
+  </div>
+</div>
+
+<div class="container" *ngIf="isAdmin()">
+  <div class="panel panel-default">
+    <div class="panel-body text-center">
+        <button (click)="openKayaksModal()" class="button" type="btn">Dodaj Kajak</button>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="col-md-6" *ngFor="let kayak of kayaks">
+        <div class="thumbnail">
+          <img src={{kayak.photo}} alt="">
+          <h3><b>Nazwa:</b> {{kayak.name}}</h3>
+          <p><b>Ładowność:</b> {{kayak.capacity}} osób</p>
+          <p><b>Cena wypozyczenia:</b> {{kayak.price}} zł/dzień</p>
+          <p><b>Ilośc sztuk na bazie:</b> {{kayak.amount}}</p>
+          <p>{{kayak.description}}</p>
+          <p *ngIf="isAdmin()">ID: {{kayak.id}}</p>
+          <button *ngIf="isAdmin()" class="btn btn-success " type="btn" (click)="onEdit(kayak)" >Edytuj</button>
+          <button *ngIf="isAdmin()" class="btn btn-danger " type="btn" (click)="deleteKayak(kayak)">Usun</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

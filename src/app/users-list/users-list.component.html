@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-body">
+        <input type="text" class="form-control" [(ngModel)]="queryString" id="search" placeholder="Aby wyszukać Użytkownika wpisz Imie lub Nazwisko">
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th></th>
+              <th>Imie i nazwisko</th>
+              <th>Ulica</th>
+              <th>Miejscowość</th>
+              <th>Numer telefonu</th>
+              <th>Email</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let user of users | SearchPipe: queryString | paginate: { itemsPerPage: 5, currentPage: p }; let i = index">
+            <td>{{i+1}}</td>
+            <td><div> <img alt="Brak Zdjęcia" src="{{user.photo}}" class="img-thumbnail img-responsive" width="50" height="50">
+            </div></td>
+            <td>{{user.name}}</td>
+            <td>{{user.street}} {{user.houseNumber}}</td>
+            <td>{{user.city}}</td>
+            <td>{{user.phone}}</td>
+            <td>{{user.email}}</td>
+            <td><a [routerLink]="['/user', user.id]">Szczegóły</a></td>
+          </tr>
+        </tbody>
+      </table>
+      <pagination-controls (pageChange)="p = $event" previousLabel="Poprzednia" nextLabel="Następna"
+       class="pull-right"></pagination-controls>
+    </div>
+    </div>
+  </div>
+</div>

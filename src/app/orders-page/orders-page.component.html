@@ -1,0 +1,29 @@
+<app-info-modal *ngIf="success" (onSuccess)="onSuccess($event)"></app-info-modal>
+<app-error-modal *ngIf="error" (onError)="onError($event)"></app-error-modal>
+<app-new-order *ngIf="selected"  (onClose)="onClose($event)" (save)="save($event)" [kayaks]="kayaks" [order]="order" [header]="header"  [kayaksInOrder]="kayaksInOrder" [kayaksAmmountArray]="kayaksAmmountArray"></app-new-order>
+<div class="container">
+    <div class="jumbotron">
+      <h1>Zamówienia</h1>
+      <p *ngIf="isAdmin()">W tym miejscu możesz zarzązdać zamówieniami: przeglądać, dodawać, modyfikować oraz dużo więcej!</p>
+      <p *ngIf="!isAdmin()">W tym miejscu możesz składać zamówienia oraz przeglądać ich historię</p>
+      <p *ngIf="!isAdmin()">Jeśli chcesz zmienić złożone juz zamówienie zadzwoń pod numer 889 779 678</p>
+    </div>
+  </div>
+
+
+  <div class="container">
+    <div class="panel panel-default">
+      <div class="panel-body text-center">
+        <button (click)="openAddOrderModal()" class="button" type="btn">Dodaj Zamówienie</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <app-all-orders (onEdit)="save($event)" [kayaks]="kayaks" (edit)="edit($event)" #allOrders ></app-all-orders>
+      </div>
+    </div>
+  </div>
+

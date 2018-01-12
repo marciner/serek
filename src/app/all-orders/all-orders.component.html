@@ -1,0 +1,171 @@
+<div *ngIf="isAdmin()">
+<h3>Kajkowe statystyki</h3>
+<span>By zobaczyc liczbe dostepnych kajaków na dany dzień: wybierz "zamówienia z dziś" bądź wprowadź datę</span>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Nazwa</th>
+      <th>Wszytskie</th>
+      <th>Wolne</th>
+    </tr>
+
+  </thead>
+  <tbody>
+      <tr *ngFor="let kayak of kayaks">
+          <td>{{kayak.name}}</td>
+          <td>{{kayak.amount}}</td>
+          <td><span *ngIf="dateSelected">{{kayak.amount - sumOfReservedKayaks[kayak.id]}}</span></td>
+      </tr>
+  </tbody>
+</table>
+
+</div>
+<h2>Zamówienia</h2>
+
+  <ul class="nav nav-tabs" *ngIf="isAdmin()">
+    <li class="nav-item">
+      <a href="#" class="nav-link" [ngClass]="{'active': status_1 == '' && status_2 == ''}" 
+      (click)="showOrdersByStatus($event, null, null)">Wszystkie</a>
+    </li>
+    <li class="nav-item">
+      <a href="#" class="nav-link" [ngClass]="{'active': status_1 == 'Wykonana' && status_2 == 'Odwolana'}" 
+      (click)="showOrdersByStatus($event, 'Wykonana', 'Odwolana')">Nowe</a>
+    </li>
+    <li class="nav-item">
+      <a href="#" class="nav-link" [ngClass]="{'active': status_1 == 'Nowa' && status_2 == 'Odwolana'}"
+      (click)="showOrdersByStatus($event, 'Nowa', 'Odwolana')">Wykonane</a>
+    </li>
+    <li class="nav-item">
+      <a href="#" class="nav-link" [ngClass]="{'active': status_1 == 'Nowa' && status_2 == 'Wykonana'}"
+      (click)="showOrdersByStatus($event, 'Nowa', 'Wykonana')">Odwołane</a>
+    </li>
+  </ul>
+
+<input type="text" class="form-control" [(ngModel)]="queryString" id="search" placeholder="Szukaj zamówienia" *ngIf="isAdmin()">
+<div class="form-group row" *ngIf="isAdmin()">
+  <div class="col-xs-12 col-md-3 text-center">
+      <span>Zamówienia z Dnia:</span>
+  </div>
+  <div class="col-xs-12 col-md-3">
+    <input type="date" class="form-control date" [(ngModel)]="date" (change)="selectOrdersByDate(date)" placeholder="YYYY-MM-DD">
+  </div>
+  <div class="col-xs-8 col-md-3">
+    <button class="btn" type="button" (click)="selectOrdersByDate()">Zamówienia z Dzisiaj</button> 
+  </div>
+  <div class="col-xs-4 col-md-3">
+    <button class="btn" type="button" (click)="getAllOrders()">Resetuj</button>
+  </div>
+</div>
+<div class=" table-responsive">
+<table class="table">
+  <thead>
+    <tr>
+      <th>Data rezerwacji</th>
+      <th>Imię i Nazwisko</th>
+      <th>Trasa</th>
+      <th>Kajaki</th>
+      <th>Cena zamówienia</th>
+      <th>Godzina przyjazdu</th>
+      <th>Uwagi</th>
+      <th>Status</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  <tr [hidden]="order.date" *ngFor="let order of orders | SearchPipe: queryString | paginate: { itemsPerPage: 10, currentPage: p }; let i = index" 
+  [ngClass]="{success: order.status == 'Wykonana', danger: order.status == 'Odwolana' }">
+    <ng-container  *ngIf="order.status !== status_1 && order.status !== status_2"> 
+
+        <td>{{order.reservationDate}}</td>
+        <td>{{order.user.name}}</td>
+        <td>{{order.route.name}}</td>
+        <td>
+          <thead>
+            <tr>
+              <th>Nazwa</th>
+              <th>Szt</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let kayak of order.kayaks | key">
+              <td>{{order?.kayaks[kayak.key]?.details?.name}}</td>
+              <td>{{kayak.value}}</td>       
+            </tr>
+          </tbody>
+        </td>
+        <td>{{order.price}}</td>
+        <td>{{order.time}}</td>
+        <td>{{order.comments}}</td>
+        <td>{{order.status}}</td>
+        <td class="btn-group" *ngIf="isAdmin()">
+          <button class="btn dropdown-toggle" type="button" data-toggle="dropdown"  >Status
+            <span class="caret"></span></button> 
+            <ul class="dropdown-menu">
+              <li><a href="#" (click)="changeStatus($event, order, 'Nowa')">Nowa</a></li>
+              <li><a href="#" (click)="changeStatus($event, order, 'Wykonana')">Wykonana</a></li>
+              <li><a href="#" (click)="changeStatus($event, order, 'Odwolana')">Odwolana</a></li>
+              <li class="divider"></li>
+              <li><a href="#" (click)="editOrder($event, order.id)">Edytuj</a></li>
+            </ul>
+        </td>
+    </ng-container>
+  </tr>
+</tbody>
+</table>
+</div>
+<pagination-controls (pageChange)="p = $event" previousLabel="Poprzednia" nextLabel="Następna" class="pull-right"></pagination-controls>
+
+
+  <!-- <table class="table">
+    <thead>
+      <tr>
+        <th>Data rezerwacji</th>
+        <th>Imię i Nazwisko</th>
+        <th>Trasa</th>
+        <th>Kajaki</th>
+        <th>Cena zamówienia</th>
+        <th>Godzina przyjazdu</th>
+        <th>Uwagi</th>
+        <th>Status</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr  *ngFor="let order of orders">
+          <td>{{order.reservationDate}}</td>
+          <td>{{order.user.name}}</td>
+          <td>{{order.route.name}}</td>
+          <td>
+            <thead>
+              <tr>
+                <th>Nazwa</th>
+                <th>Szt</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let kayak of order.kayaks | key">
+                <td>{{order.kayaks[kayak.key].details.name}}</td>
+                <td>{{kayak.value}}</td>       
+              </tr>
+            </tbody>
+          </td>
+          <td>{{order.price}}</td>
+          <td>{{order.time}}</td>
+          <td>{{order.comments}}</td>
+          <td>{{order.status}}</td>
+          <td class="btn-group" *ngIf="isAdmin()">
+            <button class="btn dropdown-toggle" type="button" data-toggle="dropdown"  >Status
+              <span class="caret"></span></button> 
+              <ul class="dropdown-menu">
+                <li><a href="#" (click)="changeStatus($event, order, 'Nowa')">Nowa</a></li>
+                <li><a href="#" (click)="changeStatus($event, order, 'Wykonana')">Wykonana</a></li>
+                <li><a href="#" (click)="changeStatus($event, order, 'Odwolana')">Odwolana</a></li>
+                <li class="divider"></li>
+                <li><a href="#" (click)="editOrder($event, order.id)">Edytuj</a></li>
+              </ul>
+          </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <pagination-controls (pageChange)="p = $event" previousLabel="Poprzednia" nextLabel="Następna" class="pull-right"></pagination-controls> -->

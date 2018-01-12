@@ -1,0 +1,9 @@
+<div class="container">
+  <div class="jumbotron">
+    <h1>Użytkownicy</h1>
+    <p *ngIf="isAdmin()">W tym miejscu możesz zarzązdać Uzytkownikami zarejstrowanymi w systemie.</p>
+    <p *ngIf="!isAdmin()">W tym miejscu znajdują się informacje o Twoim koncie użytkownika</p>
+  </div>
+</div>
+<app-users-list *ngIf="isAdmin()"></app-users-list>
+<app-current-user></app-current-user>

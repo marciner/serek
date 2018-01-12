@@ -1,0 +1,84 @@
+<!--
+<div *ngIf="error" class="alert alert-warning" role="alert">
+  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+  <span class="sr-only">Error:</span>
+  {{error}}
+</div>
+<div class="modal-dialog">
+  <div class="loginmodal-container">
+    <h1>Login to Your Account</h1><br>
+    <form class="form-signin" (submit)="loginWithEmail($event, email.value, password.value)">
+      <label for="email" class="sr-only">Email address</label>
+      <input #email type="email" id="email" class="form-control" placeholder="Email address">
+      <label for="password" class="sr-only">Password</label>
+      <input #password type="password" id="password" class="form-control" placeholder="Password" required="">
+      <br>
+      <button class="btn btn-md btn-primary btn-block" type="submit">Sign in</button>
+    </form>
+    <hr>
+    <button class="login loginmodal-submit" (click)="loginWithGoogle()">Login With Google</button>
+    <hr>
+    <a [routerLink]="['/register']" style="cursor: pointer;">Register Now</a>
+  </div>
+</div> -->
+<!-- Top content -->
+
+<app-forgot-password-modal *ngIf="forgotPassword" (onForgotPassword)="onForgotPassword($event)" (onResetPassword)="onResetPassword($event)"></app-forgot-password-modal>
+<div class="col-md-6 col-sm-6  bg2 " >
+
+
+          <div class="text-center form-login col-md-offset-2 col-sm-offset-3 col-xs-offset-1" style="max-width:438px;">
+  
+
+                <h1 class="logo" style="font-size: 4em;">SEREK</h1>
+                <img src="../../assets/kayak.png">
+
+
+         
+                <form class="form-signin" (submit)="loginWithEmail($event, email.value, password.value)">
+                  <label for="email" class="sr-only">Email</label>
+                  <input #email type="email" id="email" class="form-control" placeholder="Email address">
+                  <label for="password" class="sr-only">Hasło</label>
+                  <input #password type="password" id="password" class="form-control" placeholder="Password">
+                  <br>
+                  <!--TODO - zrobic by error sam sie zmienial w ui, teraz tego nie robi-->
+                  <div *ngIf="error" class="alert alert-warning" role="alert">
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                    <span class="sr-only"></span>
+                    {{error}}
+                  </div>
+                  <button class="btn btn-md btn-primary btn-block" type="submit">Zaloguj</button>
+                </form>
+                <button class="btn btn-md btn-primary btn-block" (click)="goToRegister()">Rejestracja</button>
+                <p  class="pull-right" style="margin-top:10px; cursor:pointer;" (click)="openPasswordModal()">Zapomniałeś hasła?</p>
+          <!-- [routerLink]="['/register']" -->
+
+          </div>
+
+
+</div>
+<div class="col-md-6 col-sm-6 bg" style="font-weight: bold;">
+
+  <h1 class="logo" style="font-size: 3em;">System elektronicznej rezerwacji kajaków</h1>
+  <br><br>
+  <h2>System umożlwiający uzytkownikowi</h2>
+  <p>Rezerwację i wynajem kajaków on0line</p>
+  <p>Przeglądanie aktualnej oferty tras oraz kajaków</p>
+  <p>Śledzenie historii zamówień</p>
+  <p>Podgląd statystyk kajakowych podróży</p>
+  <h2>System oferuje ponadto szereg opcji dla administratorów - właścicieli wypozyczalni kajakowych:</h2>
+  <br><br>
+  <p>Dodawanie/edycję/usuwanie z oferty tras oraz kajaków</p>
+  <p>Przegląd rezerwacji - tych aktualnych, zarchiwizowanych, odwołanych</p>
+  <p>Raporty dotyczące min: najczęsciej wybieranych tras, liczby użytkowników, uzyskanych przychodów</p>
+  <p>Zarządzanie kontami zarejestrowanych użytwkoników</p>
+  <p>Oraz wiele więcej!</p>
+  <br><br>
+
+<div>
+    <p>Powered by: </p>
+    <img src="../../assets/angular.svg" style="width: 50px; height: 50px;">
+    <img src="../../assets/firebase.svg" style="width: 50px; height: 50px;">
+    <img src="../../assets/stackoverflow.svg" style="width: 50px; height: 50px;">
+</div>
+</div>

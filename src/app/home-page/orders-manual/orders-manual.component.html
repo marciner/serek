@@ -1,0 +1,30 @@
+<h2 class="text-center">Sekcja Zamówienia</h2>
+<h3 class="text-center">W tej sekcji możesz składac zamówienia oraz podglądac ich status</h3>
+<p>Aby złożyć zamówienie:</p>
+    <ol>
+        <li>Kliknij na <img src="../../assets/new_order.PNG" alt="" class="img-responsive" style="width:150px; height:49px"></li>
+        <li>Wybierz dzień na który chcesz dokonać rezerwacji <img src="../../assets/date.PNG" alt="" class="img-responsive"></li>
+        <li>Wybierz jedną z dostepnych Tras <img src="../../assets/selected_route.PNG" alt="" class="img-responsive"></li>
+        <li>Wprowadz żądaną liczbe kajaków przy nazwie kajaka.<br>
+          Jeśli nie chcesz rezerwować kajaka danego typu obok jego nazwy wprowadż liczbę 0.
+          <img src="../../assets/kayaks.PNG" alt="" class="img-responsive">
+        </li>
+        <li>Opcjonalnie wprowadź szacowaną godzine przybycia do punktu rozpoczęcia spływu oraz uwagi do rezerwacji</li>
+        <li>Kliknij <img src="../../assets/save.PNG" alt="" class="image-responsive"></li>
+      </ol> 
+<p>Twoje zamównienie będzie widoczne w sekcji "Zamównienia" ze statusem "Nowa"</p>
+<div class="alert alert-info">
+    <strong>Uwaga!</strong> Aby edytować bądź usunąć swoją rezerwację - zdawoń pod numer 777888999
+</div>
+
+<div class="col-md-12" *ngIf="!admin">
+  <h3 class="text-center">Jako administrator posiadasz także możliwość: </h3>
+  <p>Wyszukiwania filtrowanie zamówień po statusie oraz po dacie realizacji </p>
+  <img src="../../assets/search.PNG" alt="" class="image-responsive mobile-img">
+  <p>Zmiana trasy bądź ilości zamówionych kajaków.</p>
+  <p>Odwołanie rezerwacji oraz zmiana statusu.</p>
+  <img src="../../assets/edit.PNG" alt="" class="image-responsive mobile-img" >
+  <p>Posiadasz także wgląd w statystki wypozyzceń na dany dzień tj: całkowita ilośc kajaków, ilośc kajaków pozostała do wypożyczenia</p>
+  <img src="../../assets/stats.PNG" alt="" class="image-responsive mobile-img" >
+  <p>Wsyztsko po ti byś mógł lepiej zarządzać swoją kajakową flotą!</p>
+</div>

@@ -1,0 +1,171 @@
+<div class="container">
+	<div class="row">
+       <div class="col-md-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">  <h4 >Profil Użytkownika</h4></div>
+            <div class="panel-body">
+              <div class="box box-info">
+                <div class="box-body">
+                  <div class="col-sm-10 col-md-10">
+                    <div> <img alt="Brak zdjęcia" src="{{user.photo}}"  class="img-thumbnail img-responsive" >
+                    </div>
+              
+                    </div>
+                    <div class="col-sm-2 col-md-2 text-center" style="margin-bottom:140px;">
+                      <h2>{{user?.name}}</h2>
+                      <span><p>Uzytkownik</p></span>            
+                    </div>
+                    <div *ngIf="!isEditing">
+                    <!-- <div *ngFor="let key of objectKeys(user)">
+                    <div class="clearfix"></div>
+                    <hr style="margin:5px 0 5px 0;">
+                    <div class="col-sm-5 col-xs-6" >
+                      {{key}}:
+                    </div>
+                    <div class="col-sm-7 col-xs-6 ">{{user[key]}}</div>
+                    <div class="clearfix"></div>
+                    <div class="bot-border"></div>
+                    </div> -->
+                    <div class="clearfix"></div>
+                    <hr style="margin:5px 0 5px 0;">
+                    <div class="col-sm-5 col-xs-6" >
+                      Email
+                    </div>
+                    <div class="col-sm-7 col-xs-6 ">{{user.email}}</div>
+                    <div class="clearfix"></div>
+                    <div class="bot-border"></div>
+
+                    <div class="clearfix"></div>
+                    <hr style="margin:5px 0 5px 0;">
+                    <div class="col-sm-5 col-xs-6" >
+                      Nr Telefonu
+                    </div>
+                    <div class="col-sm-7 col-xs-6 ">{{user.phone}}</div>
+                    <div class="clearfix"></div>
+                    <div class="bot-border"></div>
+
+                    <div class="clearfix"></div>
+                    <hr style="margin:5px 0 5px 0;">
+                    <div class="col-sm-5 col-xs-6" >
+                      Ulica
+                    </div>
+                    <div class="col-sm-7 col-xs-6 ">{{user.street}}</div>
+                    <div class="clearfix"></div>
+                    <div class="bot-border"></div>
+
+                    <div class="clearfix"></div>
+                    <hr style="margin:5px 0 5px 0;">
+                    <div class="col-sm-5 col-xs-6" >
+                      Nr domu
+                    </div>
+                    <div class="col-sm-7 col-xs-6 ">{{user.houseNumber}}</div>
+                    <div class="clearfix"></div>
+                    <div class="bot-border"></div>
+
+                    <div class="clearfix"></div>
+                    <hr style="margin:5px 0 5px 0;">
+                    <div class="col-sm-5 col-xs-6" >
+                      Miasto
+                    </div>
+                    <div class="col-sm-7 col-xs-6 ">{{user.city}}</div>
+                    <div class="clearfix"></div>
+                    <div class="bot-border"></div>
+
+                    <div class="clearfix"></div>
+                    <hr style="margin:5px 0 5px 0;">
+                    <div class="col-sm-5 col-xs-6" >
+                      Kod pocztowy
+                    </div>
+                    <div class="col-sm-7 col-xs-6 ">{{user.zip}}</div>
+                    <div class="clearfix"></div>
+                    <div class="bot-border"></div>
+
+                    <div class="clearfix"></div>
+                    <hr style="margin:5px 0 5px 0;">
+                    <div class="col-sm-5 col-xs-6" >
+                      Data dołączenia
+                    </div>
+                    <div class="col-sm-7 col-xs-6 ">{{user.registrationDate | date:'fullDate'}}</div>
+                    <div class="clearfix"></div>
+                    <div class="bot-border"></div>
+
+                    
+
+
+                  </div>
+                    <div *ngIf="isEditing">
+                      <div *ngIf="showSpinner" class="overlay">
+                        <app-loading-spinner></app-loading-spinner>
+                      </div>
+                      <form class="form-signin" [formGroup]="userForm" >                    
+                                <div [ngClass]="{'has-error':!userForm.controls['name'].valid && userForm.controls['name'].touched}">
+                                  <label for="name" class="sr-only">Imię i Nazwisko*</label>
+                                  <input #name type="text" id="name" class="form-control" placeholder="Imię Nazwisko"
+                                  [formControl]="userForm.controls['name']" [(ngModel)]="user.name">
+                                  <div class="alert alert-danger" *ngIf="!userForm.controls['name'].valid && userForm.controls['name'].touched">Imię i Nzwisko jest wymagane</div>
+                                </div>
+                        
+                                <div> 
+                                  <label for="city" class="sr-only">Miejscowość</label>
+                                  <input #city type="text" id="city" class="form-control" placeholder="Miejscowosc"
+                                  [formControl]="userForm.controls['city']" [(ngModel)]="user.city">
+                                </div>
+                        
+                                <div>
+                                  <label for="street" class="sr-only">Ulica</label>
+                                  <input #street type="text" id="street" class="form-control" placeholder= "Ulica"
+                                  [formControl]="userForm.controls['street']" [(ngModel)]="user.street">
+                                  
+                                </div>
+                        
+                                <div>
+                                  <label for="houseNumber" class="sr-only">Nr domu</label>
+                                  <input #houseNumber type="text" id="houseNumber" class="form-control" placeholder= "Nr domu"
+                                  [formControl]="userForm.controls['houseNumber']" [(ngModel)]="user.houseNumber">              
+                                </div>
+                        
+                                <div>
+                                  <label for="zip" class="sr-only">Kod pocztowy</label>
+                                  <input #zip type="text" id="zip" class="form-control" placeholder="Kod pocztowy"
+                                  [formControl]="userForm.controls['zip']" [(ngModel)]="user.zip">
+                                </div>
+
+                                <div [ngClass]="{'has-error':!userForm.controls['phone'].valid && userForm.controls['phone'].touched}">
+                                    <label for="phone" class="sr-only">Numer telefonu*</label>
+                                    <input #phone type="text" id="phone" class="form-control" placeholder="665-987-990"
+                                    [formControl]="userForm.controls['phone']" [(ngModel)]="user.phone">
+                                    <div *ngIf="userForm.controls['phone'].hasError('required') && userForm.controls['phone'].touched" class="alert alert-danger">Numer telefonu jest wymagany</div>
+                                    <div *ngIf="userForm.controls['phone'].hasError('minlength') && userForm.controls['phone'].touched" class="alert alert-danger">Numer telefonu musi zawierać przynajmniej 9 cyfr</div>
+                                  </div>
+
+
+                        
+                                <p>* - Pole wymagane</p>
+
+                                <div>
+                                    <label class="sr-only form-control">Zdjęcie profilowe</label>
+                                    <label class="btn btn-default form-control" >
+                                        Wybierz plik <input type="file" style="display: none;" (change)="upload($event)">
+                                    </label>
+                                  </div>
+
+                                <div class="text-center">
+                                  <button class="btn btn-primary btn-inline" (click)="closeModal()">Zamknj</button>
+                                  <button  [disabled]="!userForm.valid" class="btn btn-success btn-inline" type="submit" (click)="onSave($event, userForm.value)">Zapisz</button>
+                                  
+                                </div>
+                              </form>                      
+
+
+                    </div>
+                    <div class="text-center" *ngIf="!isEditing">
+                      <button (click)="goBack()" class="btn btn-primary">Powrót</button>
+                      <button (click)="isEdit()" class="btn btn-success">Edytuj</button>
+                    </div>
+                </div>
+              </div> 
+            </div> 
+          </div>
+      </div>  
+  </div>
+</div>

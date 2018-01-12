@@ -1,0 +1,9 @@
+<div style="display: block">
+    <canvas baseChart
+            [data]="pieChartData"
+            [labels]="pieChartLabels"
+            [colors]="pieChartColors"
+            [chartType]="pieChartType">
+    </canvas>
+</div>
+<button (click)="generateChart()" class="btn btn-default">Załaduj Raport</button>

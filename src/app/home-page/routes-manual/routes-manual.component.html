@@ -1,0 +1,24 @@
+<h2 class="text-center">Sekcja Trasy</h2>
+<h3 class="text-center">Sekcja pozwalająca na przegląd aktualnie dostepnych tras zawierajaca informację o:</h3>
+<ol>
+    <li>Długości trasy</li>
+    <li>Czasu spływu</li>
+    <li>Ceny za transport kajaków</li>
+    <li>Stopniu skomplikowania trasy</li>
+  </ol>
+ <img src="../../assets/route.PNG" alt="" class="image-responsive mobile-img">
+
+
+<div class="col-md-12" *ngIf="!admin">
+  <h3>Adminstrator systemu w tej sekcji jest w stanie swobodnie:</h3>
+  <ol>
+      <li>Edytować dane istniejących tras</li>
+      <li>Dodawać trasy do swojej oferty</li>
+      <li>Usuwać nieaktualne już trasy </li>
+      <li>Zmieniac zdjęcia profilowe tras </li>
+    </ol> 
+    <img src="../../assets/route_edit.PNG" alt="" class="image-responsive mobile-img">
+    <div class="alert alert-info">
+        <strong>Uwaga!</strong> Wszytskie dokonane zmiany są natychmiastowo widoczne dla użytkowników Systemu SEREK
+    </div>
+</div>

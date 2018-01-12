@@ -1,0 +1,41 @@
+<app-routes-modal *ngIf="selected" (onClose)="onClose($event)" (save)="save($event)"  [route]="route" [header]="header"></app-routes-modal>
+<app-info-modal *ngIf="success" (onSuccess)="onSuccess($event)"></app-info-modal>
+<app-error-modal *ngIf="error" (onError)="onError($event)"></app-error-modal>
+<div class="container">
+  <div class="jumbotron">
+    <h1>Trasy</h1>
+    <p *ngIf="isAdmin()">W tym miejscu możesz zarzązdać swoja ofertą Tras kajakowych. Modyfikuj ceny, opis, dodawaj nowe usuwaj istniejące!</p>
+    <p *ngIf="!isAdmin()">W tym miejscu znajdują się informacje odnośnie oferowanych przez nas tras kajakowych. Mozesz dowiedzieć się miedzy innymi:
+    jakie trasy są dostępne, ile czasu zajmuje ich pokonanie, dla kogo są przeznaczone oraz jaka jest opłata za transport kajaków.</p>
+    <p *ngIf="!isAdmin()">Uwaga! Opłata za transport jest stała i  niezależna od ilości kajaków.</p>
+  </div>
+</div>
+
+<div class="container" *ngIf="isAdmin()">
+  <div class="panel panel-default">
+    <div class="panel-body text-center">
+        <button (click)="openRoutesModal()" class="button" type="btn">Dodaj Trasę</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="thumbnail col-md-12" *ngFor="let route of routes">
+        <img src="{{route.photo}}" alt="">
+        <div class="col-md-10 info">
+        <h3><b>Nazwa:</b> {{route.name}}</h3>
+        <p><b>Długośc trasy:</b> {{route.length}} km</p>
+        <p><b>Czas spływu:</b> {{route.time}} h</p>
+        <p><b>Cena transportu:</b> {{route.price}} zł</p>
+        <p>{{route.description}}</p>
+        <p *ngIf="isAdmin()">ID: {{route.id}}</p>
+        <button *ngIf="isAdmin()" class="btn btn-success " type="btn" (click)="onEdit(route)" >Edytuj</button>
+        <button *ngIf="isAdmin()" class="btn btn-danger " type="btn" (click)="deleteRoute(route)">Usun</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

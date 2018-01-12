@@ -1,0 +1,69 @@
+<div class="modal-dialog form-top">
+  <div class="registermodal-container">
+    <h1 class="text-center logo">Rejestracja</h1><br>
+    <form class="form-signin" (submit)="register($event, name.value, email.value, password.value,
+    city.value, street.value, housenumber.value, zip.value, phone.value)" [formGroup]="complexForm"
+    (ngSubmit)="submitForm(complexForm.value)">
+      <div [ngClass]="{'has-error':!complexForm.controls['name'].valid && complexForm.controls['name'].touched}">
+      <label for="name" class="sr-only">Imię i nazwisko *</label>
+      <input #name type="text" id="name" class="form-control" placeholder="Imię i nazwisko" [formControl]="complexForm.controls['name']">
+      <div class="alert alert-danger" *ngIf="!complexForm.controls['name'].valid && complexForm.controls['name'].touched">Imie i nazwisko jest wymagane</div>
+      </div>
+
+      <div [ngClass]="{'has-error':!complexForm.controls['email'].valid && complexForm.controls['email'].touched}">
+      <label for="email" class="sr-only">Adres email *</label>
+      <input #email type="email" id="email" class="form-control" placeholder="Adres email"  autofocus=""
+      [formControl]="complexForm.controls['email']">
+      <div class="alert alert-danger" *ngIf="!complexForm.controls['email'].valid && complexForm.controls['email'].touched">Email jest wymagany</div>
+      </div>
+
+      <div [ngClass]="{'has-error':!complexForm.controls['password'].valid && complexForm.controls['password'].touched}">
+      <label for="inputPassword" class="sr-only">Hasło *</label>
+      <input #password type="password" id="inputPassword" class="form-control" placeholder="Hasło"
+      [formControl]="complexForm.controls['password']">
+      <div *ngIf="complexForm.controls['password'].hasError('required') && complexForm.controls['password'].touched" class="alert alert-danger">Hasło jest wymagane</div>
+      <div *ngIf="complexForm.controls['password'].hasError('minlength') && complexForm.controls['password'].touched" class="alert alert-danger">Hasło musi zawierać przynajmniej 6 znaków</div>
+      </div>
+
+      <label for="city" class="sr-only">Miasto</label>
+      <input #city type="text" id="city" class="form-control" placeholder="Miasto"
+      [formControl]="complexForm.controls['city']">
+
+      <label for="street" class="sr-only">Ulica</label>
+      <input #street type="text" id="street" class="form-control" placeholder="Ulica"
+      [formControl]="complexForm.controls['street']">
+
+      <label for="housenumber" class="sr-only">Nr domu</label>
+      <input #housenumber type="text" id="housenumber" class="form-control" placeholder="Nr domu"
+      [formControl]="complexForm.controls['housenumber']">
+
+      <label for="zip" class="sr-only">Kod pocztowy</label>
+      <input #zip type="text" id="zip" class="form-control" placeholder="Kod pocztowy"
+      [formControl]="complexForm.controls['zip']">
+
+      <div [ngClass]="{'has-error':!complexForm.controls['phone'].valid && complexForm.controls['phone'].touched}">
+      <label for="phone" class="sr-only">Telefon *</label>
+      <input #phone type="text" id="phone" class="form-control" placeholder="Telefon"
+      [formControl]="complexForm.controls['phone']">
+      <div *ngIf="complexForm.controls['phone'].hasError('required') && complexForm.controls['phone'].touched" class="alert alert-danger">Numer telefonu jest wymagany</div>
+      <div *ngIf="complexForm.controls['phone'].hasError('minlength') && complexForm.controls['phone'].touched" class="alert alert-danger">Numer telefonu musi zawierać przynajmniej 9 cyfr</div>
+      </div>
+      <div *ngIf="error" class="alert alert-warning" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only"></span>
+        {{error.message}}
+      </div>
+
+
+
+
+      <div>
+        * - Pole wymagane
+        <br>
+        Utworzenie konta oznacza, że zapoznałeś się z <a href="#">Regulaminem</a>
+      </div>
+      <br>
+      <button [disabled]="!complexForm.valid" class="btn btn-md btn-primary btn-block" type="submit">Utwórz konto</button>
+    </form>
+  </div>
+</div>

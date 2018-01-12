@@ -1,0 +1,28 @@
+<div class="container">
+	<div class="row">
+       <div class="col-md-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">  <h4 >Twój Profil</h4></div>
+            <div class="panel-body">
+              <div class="box box-info">
+                <div class="box-body">
+                  <div class="col-sm-6">
+                    <img alt="Brak zdjęcia" src="{{currentUser.photo}}"  class="img-thumbnail img-responsive" >              
+                    </div>
+                    <div class="col-sm-6 text-center">
+                      <h2>{{currentUser?.name}}</h2>
+                      <span><p>Uzytkownik</p></span> 
+                      <a [routerLink]="['/user', currentUser.id]">Szczegóły</a>        
+                    </div>
+                </div>
+              </div> 
+            </div> 
+          </div>
+      </div>  
+  </div>
+</div>
+
+
+
+
+         

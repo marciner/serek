@@ -1,0 +1,83 @@
+<div class="overlay">
+	<div class="popup">
+		<h2>{{header}}</h2>
+		<a class="close" (click)="closeModal()">&times;</a>
+		<div class="content">
+      <form class="form-signin"  #orderForm="ngForm" >
+
+        <div class="form-group">
+          <label for="user">Imie i Nazwisko Użytkownika</label>
+          <select class="form-control" id="user" [(ngModel)]="order.user" name="user" 
+          required #user="ngModel" [disabled]="!isAdmin()">
+            <option *ngFor="let user of users" [value]="user.id">{{user.name}}</option>
+          </select>
+        </div>
+        <div class="alert alert-danger" *ngIf="!user.valid" >Użytkownik jest wymagany</div>
+
+        <div class="form-group">
+          <label for="reservationDate" class="sr-only">Data Rezerwacji*</label><br>
+          <input type="date"   id="reservationDate"  class="form-control date"
+          [(ngModel)]="order.reservationDate" name="reservationDate" required
+          #reservationDate="ngModel">
+        </div>
+        <div class="alert alert-danger" *ngIf="!reservationDate.valid" >Data jest wymagana</div>
+
+        <div class="form-group">
+          <label for="Trasa" class="sr-only">Trasa*</label><br>
+          <select required class="form-control" [(ngModel)]="order.route" name="route" 
+          #route="ngModel" (change)="currentCost()">
+            <option *ngFor="let route of routes" [value]="route.id">
+               {{ route.name }} /{{route.price}}zł
+            </option>
+          </select>
+        </div>
+        <div class="alert alert-danger" *ngIf="!route.valid">Trasa jest wymagana</div>
+
+        <div class="form-group">
+          <label for="Kajaki" class="sr-only">Kajaki*</label><br>
+          <div  *ngFor="let kayak of kayaks;  let i = index;" class="form-group">
+            <span class="col-md-6 col-sm-6 col-xs-6 col-form-label">
+              <strong>{{kayak.name}}</strong> {{kayak.price}}zł/dzień
+            </span>
+            <div class="col-md-6 col-sm-6 col-xs-6">
+              <div class="col-md-6 col-sm-6 col-xs-6">
+                <input type="number"  class="form-control"   
+                [(ngModel)]="order.kayaks[kayak.id]"
+                 name={{kayak.id}}  (keyup)="currentCost()">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="time" class="sr-only">Planowany czas rozpoczęcia spływu(opcjonalnie)</label><br>
+          <input type="time" class="form-control" id="time" [(ngModel)]="order.time" 
+          name="time" #time="ngModel">
+        </div>
+
+        <div class="form-group">
+          <label for="comments" class="sr-only">Uwagi</label><br>
+          <textarea placeholder="Dodatkowe uwagi" rows="3" class="form-control" 
+            name="comments" id="comments"  [(ngModel)]="order.comments"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="price" class="sr-only">Całkowita cena zamówienia</label>
+          <input  class="not-input" type="number" id="price" [(ngModel)]="order.price" 
+          name="price" type="number" #price="ngModel"  readonly>
+        </div>
+
+        <div class="form-group text-center">
+        <button  class="btn btn-primary btn-inline" type="submit" 
+          (click)="closeModal()">Anuluj
+        </button> 
+        <button  class="btn btn-success btn-inline" type="submit" 
+          (click)="onSave($event, orderForm)" [disabled]="!orderForm.valid">Zapisz
+        </button>
+        </div>
+
+
+      </form>
+		</div>
+	</div>
+</div>

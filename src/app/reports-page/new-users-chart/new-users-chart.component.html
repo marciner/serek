@@ -1,0 +1,9 @@
+<div style="display: block">
+    <canvas baseChart
+            [datasets]="barChartData"
+            [labels]="barChartLabels"
+            [options]="barChartOptions"
+            [chartType]="barChartType"
+    ></canvas>
+  </div>
+  <button (click)="generateChart()" class="btn btn-default">Załaduj Raport</button>

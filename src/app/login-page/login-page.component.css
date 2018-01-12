@@ -1,0 +1,41 @@
+
+/* to opacity effect without inpacting child */
+.bg{  
+	background-color: rgba(148, 146, 145, 0.23);	
+  height: 100%;
+ }
+.bg::after {
+	content: "";
+	background-image: url(../../assets/login_screen_background.jpg);
+	/* Center and scale the image */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+	opacity: 0.8;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0; 
+  position: absolute;
+  z-index: -1;   
+}
+
+/* .bg2{
+	background-color: #eee;
+	height: 100%; 
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	padding:150px 0px 0px 0px;
+			
+} */
+
+.form-login {
+	padding: 25px 25px 30px 25px;
+	background: rgb(255, 255, 255);
+	max-width:438px;
+	-moz-border-radius: 4px 4px 4px 4px; -webkit-border-radius: 4px 4px 4px 4px; border-radius: 4px 4px 4px 4px;
+
+}
+
+

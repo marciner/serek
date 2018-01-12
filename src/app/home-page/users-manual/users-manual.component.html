@@ -1,0 +1,15 @@
+<h2 class="text-center">Sekcja Użytkownicy</h2>
+<h3 class="text-center">Tu znajdują sie informację o aktualnie zalogowanym uzytkowniku</h3>
+<h3 class="text-center">Sekcja ta umożliwia również edycję swoich danych osobowych</h3>
+
+ <img src="../../assets/user.PNG" alt="" class="image-responsive mobile-img">
+
+
+<div class="col-md-12" *ngIf="!admin">
+  <h3>Adminstrator dodatkowo posiada możliwość przeglądania zarejestrowanych uzytkowników oraz zmiany ich danych osobowych</h3>
+ 
+    <img src="../../assets/users_list.PNG" alt="" class="image-responsive mobile-img">
+    <div class="alert alert-info">
+        <strong>Uwaga!</strong> Wszytskie dokonane zmiany są natychmiastowo widoczne dla użytkowników Systemu SEREK
+    </div>
+</div>

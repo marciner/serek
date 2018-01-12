@@ -1,0 +1,8 @@
+<app-sidebar *ngIf="isLoggedIn"  (click)="toggleSidebar($event)" [wrapper]="wrapper"></app-sidebar>
+
+<app-mobile-hamburger-button (click)="toggleSidebar($event)" [ngClass]="{'margin': wrapper, 'open': wrapper}">
+</app-mobile-hamburger-button>
+
+<router-outlet></router-outlet>
+
+

@@ -1,0 +1,22 @@
+
+  <nav class="wrapper" [class.active]="wrapper">
+    <div class="side-bar">
+      <ul>
+        <li class="menu-head">
+          <p>SEREK</p> <a href="#"class="push_menu" (click)="toggleSidebar($event)"><span class="glyphicon glyphicon-th-list pull-right"></span></a>
+        </li>
+        <div class="menu">
+          <li *ngFor="let sidebar of sidebars" >
+            <a  (click)="onSelect(sidebar, $event)"  
+              [ngClass]="{'active': sidebar===selectedSidebar}" routerLink={{sidebar.url}}>
+              {{sidebar.name}}<span class="glyphicon {{sidebar.icon}} pull-right"></span>
+            </a>
+          </li>
+          <li>
+            <a href="#" (click)="logout($event)">Wyloguj<span class="glyphicon glyphicon-log-out pull-right"></span></a>         
+          </li>
+        </div>
+      </ul>
+    </div>
+  </nav>
+

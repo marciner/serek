@@ -1,0 +1,12 @@
+@import url(http://fonts.googleapis.com/css?family=Lato);
+
+/* to fix problem with image overlay on mobile */
+
+    .mobile-img{
+        width: 80%;
+    }
+    @media screen and (max-width: 1001px){
+        .mobile-img{
+            width: 100%;
+        }
+      }

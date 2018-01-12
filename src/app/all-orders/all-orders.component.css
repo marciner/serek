@@ -1,0 +1,34 @@
+.btn{
+    background-color: white;
+    border: 1px solid #F3E3E3;
+
+}
+
+table tr td:last-child {
+    display: table-cell;
+}
+
+.dropdown-menu{
+    position: relative;
+}
+
+.active{
+    color: #464a4c;
+    background-color: #fff;
+    border-color: #ddd #ddd #fff;
+}
+
+.active:focus, .nav-item:focus{
+    background-color: #fff;
+}
+
+.nav{
+    margin-bottom: 20px;
+}
+input[type=date]{
+    margin-top: 20px;
+}
+.form-group div:nth-child(1){
+    margin-top: 30px;
+}
+

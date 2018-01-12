@@ -1,0 +1,24 @@
+<h2 class="text-center">Sekcja kajaki</h2>
+<h3 class="text-center">Sekcja pozwalająca na przegląd aktualnie dostepnych modeli kajaków zawierajaca informację o:</h3>
+<ol>
+    <li>Dostepnej ilości danego modelu</li>
+    <li>Ładowności</li>
+    <li>Ceny za wynajem</li>
+    <li>Przeznaczeniu turystycznym</li>
+  </ol>
+ <img src="../../assets/kajak.PNG" alt="" class="image-responsive mobile-img">
+
+
+<div class="col-md-12" *ngIf="!admin">
+  <h3>Adminstrator systemu w tej sekcji jest w stanie swobodnie:</h3>
+  <ol>
+      <li>Edytować dane istniejących kajaków</li>
+      <li>Dodawać kajaki do swojej floty</li>
+      <li>Usuwać wycofane już bolidy </li>
+      <li>Zmieniac zdjęcia profilowe kajaków </li>
+    </ol> 
+    <img src="../../assets/kajak_edit.PNG" alt="" class="image-responsive mobile-img">
+    <div class="alert alert-info">
+        <strong>Uwaga!</strong> Wszytskie dokonane zmiany są natychmiastowo widoczne dla użytkowników Systemu SEREK
+    </div>
+</div>

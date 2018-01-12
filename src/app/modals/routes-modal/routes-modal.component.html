@@ -1,0 +1,61 @@
+<div class="overlay">
+	<div class="popup">
+    <h2>{{header}}</h2>
+    <div *ngIf="showSpinner" class="overlay">
+      <app-loading-spinner></app-loading-spinner>
+  </div>
+		<a class="close" (click)="closeModal()">&times;</a>
+		<div class="content">
+      <form class="form-signin" [formGroup]="routeForm" (ngSubmit)="editRoute($event, routeForm.value)">
+
+        <div [ngClass]="{'has-error':!routeForm.controls['name'].valid && routeForm.controls['name'].touched}">
+          <label for="name" class="sr-only">Nazwa*</label>
+          <input #name type="text" id="name" class="form-control" placeholder="Nazwa"
+          [formControl]="routeForm.controls['name']" [(ngModel)]="route.name">
+          <div class="alert alert-danger" *ngIf="!routeForm.controls['name'].valid && routeForm.controls['name'].touched">Nazwa jest wymagana</div>
+        </div>
+
+        <div [ngClass]="{'has-error':!routeForm.controls['length'].valid && routeForm.controls['length'].touched}">
+          <label for="length" class="sr-only">Długość trasy(w km)*</label>
+          <input #length type="number" id="length" class="form-control" placeholder="10"
+          [formControl]="routeForm.controls['length']" [(ngModel)]="route.length">
+          <div class="alert alert-danger" *ngIf="!routeForm.controls['length'].valid && routeForm.controls['length'].touched">Pole "Ładowność" jest wymagane</div>
+        </div>
+
+        <div [ngClass]="{'has-error':!routeForm.controls['time'].valid && routeForm.controls['time'].touched}">
+          <label for="time" class="sr-only">Czas spływu*</label>
+          <input #time type="number" id="time" class="form-control" placeholder= "3"
+          [formControl]="routeForm.controls['time']" [(ngModel)]="route.time">
+          <div class="alert alert-danger" *ngIf="!routeForm.controls['time'].valid && routeForm.controls['time'].touched">czas spływu jest wymagany</div>
+        </div>
+
+        <div [ngClass]="{'has-error':!routeForm.controls['description'].valid && routeForm.controls['description'].touched}">
+          <label for="description" class="sr-only">Opis*</label>
+          <textarea rows="4" class="form-control" id="description"  placeholder="Opis"
+          [formControl]="routeForm.controls['description']" [(ngModel)]="route.description"></textarea>
+          <div class="alert alert-danger" *ngIf="routeForm.controls['description'].hasError('minlength')">Opis musi zawierać co najmniej 10 znaków</div>
+          <div class="alert alert-danger" *ngIf="routeForm.controls['description'].hasError('required') && routeForm.controls['description'].touched">Opis jest wymagany</div>
+        </div>
+
+        <div [ngClass]="{'has-error':!routeForm.controls['price'].valid && routeForm.controls['price'].touched}">
+          <label for="price" class="sr-only">Cena transportu*</label>
+          <input #price type="number" id="price" class="form-control" placeholder="10"
+          [formControl]="routeForm.controls['price']" [(ngModel)]="route.price">
+          <div class="alert alert-danger" *ngIf="!routeForm.controls['price'].valid && routeForm.controls['price'].touched">Cena jest wymagana</div>
+        </div>
+
+        <label class="sr-only">Zdjęcie trasy</label>
+        <label class="btn btn-default form-control" >
+            Wybierz plik <input type="file" style="display: none;" (change)="upload($event)">
+        </label>
+
+        <p>* - Pole wymagane</p>
+        <div class="text-center">
+          <button class="btn btn-primary btn-inline" (click)="closeModal()">Zamknj</button>
+          <button  [disabled]="!routeForm.valid" class="btn btn-success btn-inline" type="submit" (click)="onSave()">Zapisz</button>
+        </div>
+
+      </form>
+		</div>
+	</div>
+</div>

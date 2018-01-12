@@ -1,0 +1,9 @@
+.sr-only{
+    overflow: visible;
+    position: relative;
+}
+label{
+    display: initial;
+
+}
+

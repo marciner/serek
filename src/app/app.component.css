@@ -1,0 +1,194 @@
+
+@import url(http://fonts.googleapis.com/css?family=Lato);
+@import url(https://fonts.googleapis.com/css?family=Anton);
+
+body, html {
+  height: 100%;
+  margin: 0;
+}
+
+.logo{
+  font-family: 'Anton', sans-serif;
+}
+
+
+/*modals*/
+h1 {
+    text-align: center;
+    font-family: Tahoma, Arial, sans-serif;
+
+   }
+  
+  .box {
+    width: 40%;
+    margin: 0 auto;
+    background: rgba(255,255,255,0.2);
+    padding: 35px;
+    border: 2px solid #fff;
+    border-radius: 20px/50px;
+    background-clip: padding-box;
+    text-align: center;
+  }
+  
+  .button {
+    font-size: 1em;
+    padding: 10px;
+    color: #fff;
+    border: 2px solid #06D85F;
+    border-radius: 20px/50px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+  }
+  .button:hover {
+    background: #06D85F;
+  }
+  
+  .overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    transition: opacity 500ms;
+    z-index: 200;
+    overflow-y:scroll;
+  
+  }
+  .overlay:target {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  .popup {
+    margin: 70px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    width: 40%;
+    position: relative;
+    transition: all 5s ease-in-out;
+  }
+  
+  .popup h2 {
+    margin-top: 0;
+    color: #333;
+    font-family: Tahoma, Arial, sans-serif;
+  }
+  .popup .close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    transition: all 200ms;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+  }
+  .popup .close:hover {
+    color: #06D85F;
+  }
+  .popup .content {
+    max-height: 30%;
+    overflow: auto;
+  }
+  .sr-only{
+  overflow: visible;
+  position: relative;
+  }
+  button{
+    margin-top: 20px;
+  }
+  label{
+  display: initial;
+  }
+
+  .button {
+    padding: 15px 25px;
+    font-size: 24px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    color: #fff;
+    background-color: #337ab7;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+  }
+  
+  .button:hover {background-color: #3886C9}
+  
+  .button:active {
+    background-color: #337ab7;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
+
+
+  .bg2{
+    background-color: #eee;
+    height: 100%; 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding:150px 0px 0px 0px;
+        
+  }
+/* button fro rwd */
+  button.toggle-nav {
+    position: absolute;
+
+    width: 60px;
+    height: 35px;
+    background-color: #38a6a6;
+    font: 400 1.2em 'Allan', serif;
+    color: #fff;
+    border: none;
+    line-height: 30px;
+    vertical-align: middle;
+    outline: none;
+    cursor: pointer;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    -webkit-transition: all 0.25s ease;
+    -moz-transition: all 0.25s ease;
+  }
+  
+  button.toggle-nav:hover {
+    width: 70px;
+  }
+
+  /* to scroll tables on mobile */
+  .table-responsive{
+   overflow-x: auto;
+  }
+
+  @media screen and (max-width: 440px){
+    .col-xs-offset-1{
+      margin-left: 0%;
+    }
+  }
+
+  @media screen and (max-width: 700px){
+    .box{
+      width: 100%;
+    }
+    .popup{
+      width: 100%;
+    }
+    .bg2{
+      padding: 50px 0px 0px 0px;
+    }
+  }
+  @media screen and (max-width: 1001px){
+    div.bg{
+      display: none;
+      width: 0%;
+    }
+    div.bg2{
+      width: 100%;
+    }
+  }
+
+  
