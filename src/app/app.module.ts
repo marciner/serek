@@ -82,12 +82,12 @@ import { SelectModule } from 'ng2-select';
 
 
 export const firebaseConfig = {//firebase
-    apiKey: "AIzaSyCP_tI5ddZPek4fX6Vb6JbEcT0Cc8ES7Fo",
-    authDomain: "fir-crud-509ce.firebaseapp.com",
-    databaseURL: "https://fir-crud-509ce.firebaseio.com",
-    projectId: "fir-crud-509ce",
-    storageBucket: "fir-crud-509ce.appspot.com",
-    messagingSenderId: "311949197900"
+    apiKey: "",
+    authDomain: "",
+    databaseURL: "",
+    projectId: "",
+    storageBucket: "",
+    messagingSenderId: ""
   };
   const routes: Routes = [
     { path: '', component: HomePageComponent },
